@@ -1,21 +1,284 @@
-```txt
+# WildCamp - 전국 오지·캠핑·무인도 전문 O2O 중개 플랫폼
+
+![WildCamp](https://img.shields.io/badge/WildCamp-v1.0-purple)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Tech Stack](https://img.shields.io/badge/Hono-Cloudflare-orange)
+
+> "지도의 끝, 나만의 캠핑을 찾다"
+
+전국의 오지·무인도·사유지 캠핑 가능 지역을 한곳에 모아 캠퍼(이용객)와 토지·도서 소유주(호스트)를 직접 연결하는 O2O 중개 플랫폼입니다.
+
+## 📱 프로젝트 개요
+
+### 목표
+- 전국 오지/무인도 + 사유지 캠핑 자원의 공유경제 기반 활성화
+- 캠핑 문화의 안전·합법적 소비 촉진
+- 호스트의 새로운 수익 창출
+- 캠퍼에게는 "남들이 모르는 나만의 명소" 제공
+
+### 주요 기능
+- ✅ **캠핑지 검색 및 필터링** - 지역, 난이도, 시설별 검색
+- ✅ **지도 기반 탐색** - GPS 좌표를 활용한 위치 시각화
+- ✅ **실시간 예약 시스템** - 즉시 예약 및 결제
+- ✅ **카테고리별 분류** - 오지, 무인도, 사유지, 산림, 해변 캠핑
+- ✅ **호스트 관리** - 캠핑지 등록 및 관리
+- ✅ **리뷰 시스템** - 실제 이용 후기 및 평점
+- ✅ **SOS 알림** - 긴급 상황 위치 공유 기능
+
+## 🌐 배포 URL
+
+- **샌드박스 URL**: https://3000-i3tpa4pyhe64lho6jgg2h-d0b9e1e2.sandbox.novita.ai
+- **API Base URL**: https://3000-i3tpa4pyhe64lho6jgg2h-d0b9e1e2.sandbox.novita.ai/api
+
+### API 엔드포인트
+
+#### 캠핑지 관련
+- `GET /api/campsites` - 캠핑지 목록 (필터링 지원)
+- `GET /api/campsites/:id` - 캠핑지 상세 정보
+- `GET /api/campsites/map/all` - 지도용 캠핑지 목록
+
+#### 예약 관련
+- `POST /api/bookings` - 예약 생성
+- `GET /api/bookings/:id` - 예약 조회
+
+#### 기타
+- `GET /api/categories` - 카테고리 목록
+- `GET /api/hosts/:id` - 호스트 정보
+- `POST /api/reviews` - 리뷰 작성
+- `POST /api/sos` - SOS 알림 전송
+
+## 🗄️ 데이터 구조
+
+### 주요 테이블
+
+#### Campsites (캠핑지)
+- GPS 좌표 (latitude, longitude)
+- 카테고리 (오지, 무인도, 사유지, 산림, 해변)
+- 시설 정보 (물, 전기, 화장실, 차량 진입)
+- 난이도 (easy, medium, hard, extreme)
+- 가격 정보 (1박, 시간당)
+- 규정 (반려동물, 화기, 흡연)
+
+#### Bookings (예약)
+- 예약자 정보
+- 체크인/체크아웃 날짜
+- 인원, 반려동물 여부
+- 결제 상태 및 예약 상태
+
+#### Reviews (리뷰)
+- 전체 평점 및 세부 평가
+- 청결도, 위치, 안전성
+
+#### SOS Alerts (긴급 알림)
+- 실시간 GPS 위치
+- 긴급 메시지
+- 상태 관리 (active, resolved, cancelled)
+
+## 🚀 기술 스택
+
+### Backend
+- **Hono** - 경량 웹 프레임워크
+- **Cloudflare Workers** - 엣지 컴퓨팅 플랫폼
+- **Cloudflare D1** - SQLite 기반 분산 데이터베이스
+
+### Frontend
+- **TailwindCSS** - 유틸리티 퍼스트 CSS 프레임워크
+- **Axios** - HTTP 클라이언트
+- **Font Awesome** - 아이콘 라이브러리
+
+### DevOps
+- **Wrangler** - Cloudflare 개발 도구
+- **PM2** - 프로세스 관리자 (개발 환경)
+- **Vite** - 빌드 도구
+
+## 📊 데이터 현황
+
+### 샘플 캠핑지 (5개)
+1. **신안 비금도 오지 캠핑장** (전남) - 무인도 캠핑, 80,000원/박
+2. **양양 오색 오지 캠핑장** (강원) - 오지 캠핑, 50,000원/박
+3. **울진 후포 프라이빗 해변** (경북) - 해변 캠핑, 60,000원/박
+4. **제주 추자도 비밀 캠핑장** (제주) - 오지 캠핑, 90,000원/박
+5. **태안 안면도 사유지 캠핑** (충남) - 사유지 캠핑, 40,000원/박
+
+### 카테고리 (5개)
+- 오지 캠핑 (2개 장소)
+- 무인도 캠핑 (1개 장소)
+- 사유지 캠핑 (1개 장소)
+- 산림 캠핑 (0개 장소)
+- 해변 캠핑 (1개 장소)
+
+## 🛠️ 로컬 개발 환경 설정
+
+### 필수 요구사항
+- Node.js 18+
+- npm 또는 yarn
+
+### 설치 및 실행
+
+```bash
+# 의존성 설치
 npm install
-npm run dev
+
+# 데이터베이스 마이그레이션 (로컬)
+npm run db:migrate:local
+
+# 테스트 데이터 삽입
+npm run db:seed
+
+# 빌드
+npm run build
+
+# PM2로 개발 서버 시작
+pm2 start ecosystem.config.cjs
+
+# 또는 직접 실행
+npm run dev:sandbox
+
+# 서비스 확인
+curl http://localhost:3000
 ```
 
-```txt
-npm run deploy
+### 데이터베이스 관리
+
+```bash
+# 로컬 DB 초기화
+npm run db:reset
+
+# 로컬 DB 마이그레이션 적용
+npm run db:migrate:local
+
+# 테스트 데이터 삽입
+npm run db:seed
+
+# 포트 정리
+npm run clean-port
 ```
 
-[For generating/synchronizing types based on your Worker configuration run](https://developers.cloudflare.com/workers/wrangler/commands/#types):
+## 📦 프로젝트 구조
 
-```txt
-npm run cf-typegen
+```
+webapp/
+├── src/
+│   ├── index.tsx           # 메인 Hono 애플리케이션
+│   └── renderer.tsx        # JSX 렌더러
+├── public/
+│   └── static/
+│       ├── app.js          # 프론트엔드 JavaScript
+│       └── styles.css      # 커스텀 CSS
+├── migrations/
+│   └── 0001_initial_schema.sql  # DB 스키마
+├── seed.sql                # 테스트 데이터
+├── ecosystem.config.cjs    # PM2 설정
+├── wrangler.jsonc          # Cloudflare 설정
+├── vite.config.ts          # Vite 빌드 설정
+└── package.json            # 의존성 및 스크립트
 ```
 
-Pass the `CloudflareBindings` as generics when instantiation `Hono`:
+## 🎯 주요 기능 상세
 
-```ts
-// src/index.ts
-const app = new Hono<{ Bindings: CloudflareBindings }>()
-```
+### 1. 지도 기반 캠핑지 탐색
+- GPS 좌표를 활용한 정확한 위치 표시
+- 네이버/카카오 지도 연동 (외부 링크)
+- 카테고리별 색상 구분
+
+### 2. 필터링 시스템
+- 지역별 필터 (강원, 경북, 전남, 제주, 충남)
+- 난이도별 필터 (쉬움, 보통, 어려움, 극한)
+- 시설별 필터 (차량 진입, 물, 전기, 반려동물)
+- 가격 범위 필터
+
+### 3. 예약 시스템
+- 체크인/체크아웃 날짜 선택
+- 인원 및 반려동물 동반 여부
+- 특별 요청사항 입력
+- 자동 가격 계산
+
+### 4. 안전 기능
+- SOS 알림 시스템
+- 실시간 GPS 위치 공유
+- 위험도 표시 (야생동물, 난이도)
+
+## 🔮 향후 개발 계획
+
+### 단기 (1-2개월)
+- [ ] 네이버/카카오 지도 API 직접 연동
+- [ ] 결제 시스템 연동 (토스페이먼츠, 카카오페이)
+- [ ] 이미지 업로드 기능 (Cloudflare R2)
+- [ ] 호스트 대시보드
+
+### 중기 (3-6개월)
+- [ ] 모바일 앱 개발 (React Native)
+- [ ] 실시간 채팅 기능
+- [ ] 보험 연동
+- [ ] 드론 맵 뷰어
+
+### 장기 (6개월+)
+- [ ] 지자체 협약 모델
+- [ ] 캠핑 장비 렌탈 제휴
+- [ ] 커뮤니티 기능
+- [ ] 글로벌 확장 (일본, 동남아)
+
+## 📈 비즈니스 모델
+
+### 수익 구조
+1. **중개 수수료** - 예약당 10-15%
+2. **보험 제휴** - 건당 정액 또는 5-10% 리워드
+3. **프리미엄 노출** - 메인 상단 노출, 지역 추천
+4. **지자체 협약** - 유휴지 운영, 관광 패키지
+5. **렌탈 제휴** - 캠핑 장비, 차박 키트
+
+## 👥 타겟 고객
+
+### 이용자 (캠퍼)
+- 프라이빗·차박·백패킹을 선호하는 20-50대
+- 가족 캠핑, 모험 여행, 사진 촬영 목적
+- 조용한 자연 환경 선호
+
+### 공급자 (호스트)
+- 사유지 보유 농민·임야 소유자
+- 무인도·유휴지 보유 지자체
+- 캠핑 부대사업 희망 사업자
+
+## 📝 사용자 가이드
+
+### 캠핑지 찾기
+1. 메인 페이지에서 "캠핑지 탐색하기" 클릭
+2. 지역/난이도/시설 필터 선택
+3. 원하는 캠핑지 카드 클릭
+4. 상세 정보 확인
+
+### 예약하기
+1. 캠핑지 상세 페이지에서 "예약하기" 클릭
+2. 예약 정보 입력 (이름, 연락처, 날짜)
+3. 인원 및 특별 요청사항 입력
+4. 예약 확인
+
+### 지도에서 찾기
+1. "지도에서 찾기" 클릭
+2. GPS 좌표로 표시된 캠핑지 확인
+3. 원하는 위치 클릭하여 상세 정보 확인
+4. 네이버/카카오 지도로 실제 위치 확인
+
+## 🔒 보안 및 정책
+
+- 호스트 실명 등록 의무화
+- 이용자 본인 인증 (카카오/Pass)
+- 자연 훼손 금지 규정
+- 화재 위험 지역 자동 경고
+- 개인정보 보호 정책 준수
+
+## 📄 라이선스
+
+MIT License
+
+## 📞 문의
+
+- **이메일**: info@wildcamp.kr
+- **전화**: 1588-1234
+- **주소**: 서울시 강남구
+
+---
+
+© 2025 WildCamp. All rights reserved.
+
+**"대한민국 오지·무인도 캠핑의 허브"**
