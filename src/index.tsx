@@ -457,11 +457,11 @@ app.get('/', (c) => {
                         <span class="font-bold text-gray-900" style="font-size: 0.625rem; margin-left: 0.25rem;">WildCamp</span>
                     </div>
                     <div class="flex items-center space-x-1">
-                        <button class="lang-btn text-white px-1.5 py-0.5 rounded transition" style="font-size: 0.625rem;">
-                            <i class="fas fa-language" style="font-size: 0.5rem; margin-right: 0.25rem;"></i>KO
+                        <button class="lang-btn text-white px-2 py-1 rounded transition" style="font-size: 0.75rem;">
+                            <i class="fas fa-language" style="font-size: 0.65rem; margin-right: 0.25rem;"></i>KO
                         </button>
-                        <button class="bg-purple-600 text-white px-1.5 py-0.5 rounded hover:bg-purple-700 transition" style="font-size: 0.625rem;">
-                            <i class="fas fa-sign-in-alt" style="font-size: 0.5rem; margin-right: 0.25rem;"></i>로그인
+                        <button class="bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700 transition" style="font-size: 0.75rem;">
+                            <i class="fas fa-sign-in-alt" style="font-size: 0.65rem; margin-right: 0.25rem;"></i>로그인
                         </button>
                     </div>
                 </div>
