@@ -34,9 +34,9 @@ async function loadCategories() {
     const categoriesHtml = categories.map(cat => `
       <div class="p-1 sm:p-2 ${categoryColors[cat.id] || 'bg-gray-100 text-gray-600'} rounded text-center cursor-pointer hover:shadow-md transition"
            onclick="filterByCategory(${cat.id})">
-        <i class="fas fa-${categoryIcons[cat.id] || 'campground'}" style="font-size: 0.75rem; margin-bottom: 0.125rem;"></i>
-        <div class="font-semibold" style="font-size: 0.5rem;">${cat.name}</div>
-        <div style="font-size: 0.5rem; margin-top: 0.125rem;">${cat.campsite_count}개</div>
+        <i class="fas fa-${categoryIcons[cat.id] || 'campground'}" style="font-size: 0.825rem; margin-bottom: 0.125rem;"></i>
+        <div class="font-semibold" style="font-size: 0.55rem;">${cat.name}</div>
+        <div style="font-size: 0.55rem; margin-top: 0.125rem;">${cat.campsite_count}개</div>
       </div>
     `).join('');
 
@@ -82,35 +82,35 @@ function displayCampsites(campsites) {
         <img src="${site.primary_image || 'https://picsum.photos/400/300?random=' + site.id}" 
              alt="${site.name}" 
              class="w-full h-24 sm:h-32 object-cover">
-        <div class="absolute top-1 right-1 ${difficultyColors[site.difficulty_level]} px-1 py-0.5 rounded-full" style="font-size: 0.5rem;">
+        <div class="absolute top-1 right-1 ${difficultyColors[site.difficulty_level]} px-1 py-0.5 rounded-full" style="font-size: 0.55rem;">
           ${difficultyLabels[site.difficulty_level]}
         </div>
-        <div class="absolute top-1 left-1 bg-white px-1 py-0.5 rounded-full" style="font-size: 0.5rem;">
+        <div class="absolute top-1 left-1 bg-white px-1 py-0.5 rounded-full" style="font-size: 0.55rem;">
           ${site.category_name}
         </div>
       </div>
       <div class="p-1.5 sm:p-2">
-        <h3 class="font-bold text-gray-900 mb-1 truncate" style="font-size: 0.625rem;">${site.name}</h3>
-        <div class="flex items-center text-gray-600 mb-1" style="font-size: 0.5rem;">
-          <i class="fas fa-map-marker-alt" style="font-size: 0.5rem; margin-right: 0.125rem;"></i>
+        <h3 class="font-bold text-gray-900 mb-1 truncate" style="font-size: 0.6875rem;">${site.name}</h3>
+        <div class="flex items-center text-gray-600 mb-1" style="font-size: 0.55rem;">
+          <i class="fas fa-map-marker-alt" style="font-size: 0.55rem; margin-right: 0.125rem;"></i>
           <span class="truncate">${site.region}</span>
           <span style="margin: 0 0.125rem;">·</span>
-          <i class="fas fa-eye" style="font-size: 0.5rem; margin-right: 0.125rem;"></i>
+          <i class="fas fa-eye" style="font-size: 0.55rem; margin-right: 0.125rem;"></i>
           <span>${site.views}</span>
         </div>
         <div class="flex items-center mb-1">
-          <div class="flex items-center text-yellow-500" style="font-size: 0.5rem;">
-            <i class="fas fa-star" style="font-size: 0.5rem; margin-right: 0.125rem;"></i>
+          <div class="flex items-center text-yellow-500" style="font-size: 0.55rem;">
+            <i class="fas fa-star" style="font-size: 0.55rem; margin-right: 0.125rem;"></i>
             <span class="font-semibold">${site.rating.toFixed(1)}</span>
           </div>
-          <span class="text-gray-500 ml-1" style="font-size: 0.5rem;">(${site.review_count})</span>
+          <span class="text-gray-500 ml-1" style="font-size: 0.55rem;">(${site.review_count})</span>
         </div>
         <div class="flex items-center justify-between mb-1">
-          <div class="text-purple-600 font-bold" style="font-size: 0.625rem;">
+          <div class="text-purple-600 font-bold" style="font-size: 0.6875rem;">
             ${site.price_per_night.toLocaleString()}원
-            <span class="text-gray-500 font-normal" style="font-size: 0.5rem;">/박</span>
+            <span class="text-gray-500 font-normal" style="font-size: 0.55rem;">/박</span>
           </div>
-          <button class="bg-purple-600 text-white px-1.5 py-0.5 rounded hover:bg-purple-700 transition" style="font-size: 0.5rem;">
+          <button class="bg-purple-600 text-white px-1.5 py-0.5 rounded hover:bg-purple-700 transition" style="font-size: 0.55rem;">
             예약
           </button>
         </div>

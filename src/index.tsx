@@ -421,17 +421,17 @@ app.get('/', (c) => {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
           }
-          /* 모바일 최적화 - 극단적 축소 (추가 30%) */
+          /* 모바일 최적화 - 10% 확대 적용 */
           @media (max-width: 768px) {
-            body { font-size: 10px; }
-            h1 { font-size: 0.85rem !important; line-height: 1.2 !important; }
-            h2 { font-size: 0.75rem !important; }
-            h3 { font-size: 0.7rem !important; }
-            p { font-size: 0.625rem !important; line-height: 1.25 !important; }
-            .btn-text { font-size: 0.625rem !important; }
-            .hero-tagline { font-size: 0.5rem !important; }
+            body { font-size: 11px; }
+            h1 { font-size: 0.935rem !important; line-height: 1.2 !important; }
+            h2 { font-size: 0.825rem !important; }
+            h3 { font-size: 0.77rem !important; }
+            p { font-size: 0.6875rem !important; line-height: 1.25 !important; }
+            .btn-text { font-size: 0.6875rem !important; }
+            .hero-tagline { font-size: 0.55rem !important; }
             section { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
-            .card-text { font-size: 0.625rem !important; }
+            .card-text { font-size: 0.6875rem !important; }
           }
           /* 다국어 버튼 눈에 띄는 색상 - 더 강렬하게 */
           .lang-btn {
