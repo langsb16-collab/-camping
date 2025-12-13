@@ -32,11 +32,11 @@ async function loadCategories() {
     };
 
     const categoriesHtml = categories.map(cat => `
-      <div class="p-2 sm:p-3 ${categoryColors[cat.id] || 'bg-gray-100 text-gray-600'} rounded-md text-center cursor-pointer hover:shadow-md transition"
+      <div class="p-1 sm:p-2 ${categoryColors[cat.id] || 'bg-gray-100 text-gray-600'} rounded text-center cursor-pointer hover:shadow-md transition"
            onclick="filterByCategory(${cat.id})">
-        <i class="fas fa-${categoryIcons[cat.id] || 'campground'} text-base sm:text-xl mb-1"></i>
-        <div class="font-semibold text-xs sm:text-sm">${cat.name}</div>
-        <div class="text-xs mt-0.5">${cat.campsite_count}개</div>
+        <i class="fas fa-${categoryIcons[cat.id] || 'campground'}" style="font-size: 0.75rem; margin-bottom: 0.125rem;"></i>
+        <div class="font-semibold" style="font-size: 0.5rem;">${cat.name}</div>
+        <div style="font-size: 0.5rem; margin-top: 0.125rem;">${cat.campsite_count}개</div>
       </div>
     `).join('');
 
@@ -76,45 +76,45 @@ function displayCampsites(campsites) {
   };
 
   const campsitesHtml = campsites.map(site => `
-    <div class="bg-white rounded-md shadow-sm overflow-hidden card-hover transition-all duration-300 cursor-pointer"
+    <div class="bg-white rounded shadow-sm overflow-hidden card-hover transition-all duration-300 cursor-pointer"
          onclick="viewCampsiteDetail(${site.id})">
       <div class="relative">
         <img src="${site.primary_image || 'https://picsum.photos/400/300?random=' + site.id}" 
              alt="${site.name}" 
-             class="w-full h-32 sm:h-40 object-cover">
-        <div class="absolute top-2 right-2 ${difficultyColors[site.difficulty_level]} px-2 py-0.5 rounded-full text-xs font-semibold">
+             class="w-full h-24 sm:h-32 object-cover">
+        <div class="absolute top-1 right-1 ${difficultyColors[site.difficulty_level]} px-1 py-0.5 rounded-full" style="font-size: 0.5rem;">
           ${difficultyLabels[site.difficulty_level]}
         </div>
-        <div class="absolute top-2 left-2 bg-white px-2 py-0.5 rounded-full text-xs font-semibold">
+        <div class="absolute top-1 left-1 bg-white px-1 py-0.5 rounded-full" style="font-size: 0.5rem;">
           ${site.category_name}
         </div>
       </div>
-      <div class="p-2.5 sm:p-3">
-        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-1.5 truncate">${site.name}</h3>
-        <div class="flex items-center text-xs text-gray-600 mb-1.5">
-          <i class="fas fa-map-marker-alt mr-0.5 text-xs"></i>
+      <div class="p-1.5 sm:p-2">
+        <h3 class="font-bold text-gray-900 mb-1 truncate" style="font-size: 0.625rem;">${site.name}</h3>
+        <div class="flex items-center text-gray-600 mb-1" style="font-size: 0.5rem;">
+          <i class="fas fa-map-marker-alt" style="font-size: 0.5rem; margin-right: 0.125rem;"></i>
           <span class="truncate">${site.region}</span>
-          <span class="mx-1">·</span>
-          <i class="fas fa-eye mr-0.5 text-xs"></i>
+          <span style="margin: 0 0.125rem;">·</span>
+          <i class="fas fa-eye" style="font-size: 0.5rem; margin-right: 0.125rem;"></i>
           <span>${site.views}</span>
         </div>
-        <div class="flex items-center mb-2">
-          <div class="flex items-center text-yellow-500 text-xs">
-            <i class="fas fa-star mr-0.5 text-xs"></i>
+        <div class="flex items-center mb-1">
+          <div class="flex items-center text-yellow-500" style="font-size: 0.5rem;">
+            <i class="fas fa-star" style="font-size: 0.5rem; margin-right: 0.125rem;"></i>
             <span class="font-semibold">${site.rating.toFixed(1)}</span>
           </div>
-          <span class="text-gray-500 text-xs ml-1">(${site.review_count})</span>
+          <span class="text-gray-500 ml-1" style="font-size: 0.5rem;">(${site.review_count})</span>
         </div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-purple-600 font-bold text-sm sm:text-base">
+        <div class="flex items-center justify-between mb-1">
+          <div class="text-purple-600 font-bold" style="font-size: 0.625rem;">
             ${site.price_per_night.toLocaleString()}원
-            <span class="text-xs text-gray-500 font-normal">/박</span>
+            <span class="text-gray-500 font-normal" style="font-size: 0.5rem;">/박</span>
           </div>
-          <button class="bg-purple-600 text-white px-2 py-1 rounded-md hover:bg-purple-700 transition text-xs">
+          <button class="bg-purple-600 text-white px-1.5 py-0.5 rounded hover:bg-purple-700 transition" style="font-size: 0.5rem;">
             예약
           </button>
         </div>
-        <div class="flex flex-wrap gap-1">
+        <div class="flex flex-wrap gap-0.5">
           ${site.car_accessible ? '<span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-car mr-1"></i>차량진입</span>' : ''}
           ${site.water_available ? '<span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-water mr-1"></i>물</span>' : ''}
           ${site.electricity_available ? '<span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-bolt mr-1"></i>전기</span>' : ''}
