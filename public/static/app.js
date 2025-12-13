@@ -32,11 +32,11 @@ async function loadCategories() {
     };
 
     const categoriesHtml = categories.map(cat => `
-      <div class="p-6 ${categoryColors[cat.id] || 'bg-gray-100 text-gray-600'} rounded-lg text-center cursor-pointer hover:shadow-md transition"
+      <div class="p-2 sm:p-3 ${categoryColors[cat.id] || 'bg-gray-100 text-gray-600'} rounded-md text-center cursor-pointer hover:shadow-md transition"
            onclick="filterByCategory(${cat.id})">
-        <i class="fas fa-${categoryIcons[cat.id] || 'campground'} text-3xl mb-2"></i>
-        <div class="font-semibold">${cat.name}</div>
-        <div class="text-sm mt-1">${cat.campsite_count}개</div>
+        <i class="fas fa-${categoryIcons[cat.id] || 'campground'} text-base sm:text-xl mb-1"></i>
+        <div class="font-semibold text-xs sm:text-sm">${cat.name}</div>
+        <div class="text-xs mt-0.5">${cat.campsite_count}개</div>
       </div>
     `).join('');
 
@@ -76,45 +76,45 @@ function displayCampsites(campsites) {
   };
 
   const campsitesHtml = campsites.map(site => `
-    <div class="bg-white rounded-lg shadow-sm overflow-hidden card-hover transition-all duration-300 cursor-pointer"
+    <div class="bg-white rounded-md shadow-sm overflow-hidden card-hover transition-all duration-300 cursor-pointer"
          onclick="viewCampsiteDetail(${site.id})">
       <div class="relative">
         <img src="${site.primary_image || 'https://picsum.photos/400/300?random=' + site.id}" 
              alt="${site.name}" 
-             class="w-full h-48 object-cover">
-        <div class="absolute top-3 right-3 ${difficultyColors[site.difficulty_level]} px-3 py-1 rounded-full text-xs font-semibold">
+             class="w-full h-32 sm:h-40 object-cover">
+        <div class="absolute top-2 right-2 ${difficultyColors[site.difficulty_level]} px-2 py-0.5 rounded-full text-xs font-semibold">
           ${difficultyLabels[site.difficulty_level]}
         </div>
-        <div class="absolute top-3 left-3 bg-white px-3 py-1 rounded-full text-xs font-semibold">
+        <div class="absolute top-2 left-2 bg-white px-2 py-0.5 rounded-full text-xs font-semibold">
           ${site.category_name}
         </div>
       </div>
-      <div class="p-4">
-        <h3 class="text-lg font-bold text-gray-900 mb-2">${site.name}</h3>
-        <div class="flex items-center text-sm text-gray-600 mb-2">
-          <i class="fas fa-map-marker-alt mr-1"></i>
-          <span>${site.region}</span>
-          <span class="mx-2">·</span>
-          <i class="fas fa-eye mr-1"></i>
-          <span>${site.views}회</span>
+      <div class="p-2.5 sm:p-3">
+        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-1.5 truncate">${site.name}</h3>
+        <div class="flex items-center text-xs text-gray-600 mb-1.5">
+          <i class="fas fa-map-marker-alt mr-0.5 text-xs"></i>
+          <span class="truncate">${site.region}</span>
+          <span class="mx-1">·</span>
+          <i class="fas fa-eye mr-0.5 text-xs"></i>
+          <span>${site.views}</span>
         </div>
-        <div class="flex items-center mb-3">
-          <div class="flex items-center text-yellow-500">
-            <i class="fas fa-star mr-1"></i>
+        <div class="flex items-center mb-2">
+          <div class="flex items-center text-yellow-500 text-xs">
+            <i class="fas fa-star mr-0.5 text-xs"></i>
             <span class="font-semibold">${site.rating.toFixed(1)}</span>
           </div>
-          <span class="text-gray-500 text-sm ml-2">(${site.review_count}개 리뷰)</span>
+          <span class="text-gray-500 text-xs ml-1">(${site.review_count})</span>
         </div>
-        <div class="flex items-center justify-between">
-          <div class="text-purple-600 font-bold text-xl">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-purple-600 font-bold text-sm sm:text-base">
             ${site.price_per_night.toLocaleString()}원
-            <span class="text-sm text-gray-500 font-normal">/박</span>
+            <span class="text-xs text-gray-500 font-normal">/박</span>
           </div>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm">
-            예약하기
+          <button class="bg-purple-600 text-white px-2 py-1 rounded-md hover:bg-purple-700 transition text-xs">
+            예약
           </button>
         </div>
-        <div class="mt-3 flex space-x-2">
+        <div class="flex flex-wrap gap-1">
           ${site.car_accessible ? '<span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-car mr-1"></i>차량진입</span>' : ''}
           ${site.water_available ? '<span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-water mr-1"></i>물</span>' : ''}
           ${site.electricity_available ? '<span class="text-xs bg-gray-100 px-2 py-1 rounded"><i class="fas fa-bolt mr-1"></i>전기</span>' : ''}

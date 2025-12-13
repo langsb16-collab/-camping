@@ -421,62 +421,83 @@ app.get('/', (c) => {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
           }
+          /* 모바일 최적화 - 70% 이상 축소 */
+          @media (max-width: 768px) {
+            body { font-size: 12px; }
+            h1 { font-size: 1.1rem !important; line-height: 1.25 !important; }
+            h2 { font-size: 1rem !important; }
+            h3 { font-size: 0.95rem !important; }
+            p { font-size: 0.75rem !important; line-height: 1.3 !important; }
+            .btn-text { font-size: 0.75rem !important; }
+            .hero-tagline { font-size: 0.7rem !important; }
+            section { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+          }
+          /* 다국어 버튼 눈에 띄는 색상 */
+          .lang-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.5);
+            font-weight: 600;
+          }
+          .lang-btn:hover {
+            background: linear-gradient(135deg, #fb923c 0%, #fb7185 100%);
+            transform: scale(1.05);
+          }
         </style>
     </head>
     <body class="bg-gray-50">
         <!-- 헤더 -->
         <header class="bg-white shadow-sm sticky top-0 z-50">
-            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16 items-center">
+            <nav class="max-w-7xl mx-auto px-2 sm:px-4">
+                <div class="flex justify-between h-9 sm:h-12 items-center">
                     <div class="flex items-center">
-                        <i class="fas fa-campground text-purple-600 text-2xl mr-2"></i>
-                        <span class="text-2xl font-bold text-gray-900">WildCamp</span>
+                        <i class="fas fa-campground text-purple-600 text-xs sm:text-base mr-1"></i>
+                        <span class="text-xs sm:text-base font-bold text-gray-900">WildCamp</span>
                     </div>
-                    <div class="hidden md:flex space-x-8">
-                        <a href="#campsites" class="text-gray-700 hover:text-purple-600 transition">캠핑지 찾기</a>
-                        <a href="#map" class="text-gray-700 hover:text-purple-600 transition">지도 보기</a>
-                        <a href="#about" class="text-gray-700 hover:text-purple-600 transition">서비스 소개</a>
-                        <a href="#contact" class="text-gray-700 hover:text-purple-600 transition">문의하기</a>
+                    <div class="flex items-center space-x-1.5">
+                        <button class="lang-btn text-white px-2 py-1 rounded-md transition text-xs font-bold">
+                            <i class="fas fa-language mr-0.5"></i>KO
+                        </button>
+                        <button class="bg-purple-600 text-white px-2 py-1 rounded-md hover:bg-purple-700 transition text-xs font-medium">
+                            <i class="fas fa-sign-in-alt text-xs mr-0.5"></i>로그인
+                        </button>
                     </div>
-                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
-                        <i class="fas fa-user mr-2"></i>로그인
-                    </button>
                 </div>
             </nav>
         </header>
 
         <!-- 히어로 섹션 -->
-        <section class="hero-gradient text-white py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-5xl font-bold mb-6">지도의 끝, 나만의 캠핑을 찾다</h1>
-                <p class="text-xl mb-8 opacity-90">전국의 오지·무인도·사유지 캠핑 가능 지역을 한곳에</p>
-                <div class="flex justify-center space-x-4">
-                    <button onclick="loadCampsites()" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                        <i class="fas fa-search mr-2"></i>캠핑지 탐색하기
+        <section class="hero-gradient text-white py-4 sm:py-8">
+            <div class="max-w-7xl mx-auto px-3 text-center">
+                <h1 class="text-base sm:text-xl md:text-2xl font-bold mb-1.5 sm:mb-2 leading-tight">지도의 끝, 나만의 캠핑을 찾다</h1>
+                <p class="hero-tagline text-xs sm:text-sm mb-0.5 sm:mb-1 opacity-90 leading-tight">주민이 만드는 정책, 지자체가 응답하는 플랫폼</p>
+                <p class="hero-tagline text-xs sm:text-sm mb-3 sm:mb-4 opacity-90 leading-tight">실명 기반의 책임 있는 공론장으로 행정 신뢰도를 높입니다</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-1.5 sm:gap-2 px-3">
+                    <button onclick="loadCampsites()" class="bg-white text-purple-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-md font-medium hover:bg-gray-100 transition text-xs sm:text-sm btn-text">
+                        <i class="fas fa-search mr-1 text-xs"></i>탐색
                     </button>
-                    <button onclick="loadMap()" class="bg-purple-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-400 transition">
-                        <i class="fas fa-map-marked-alt mr-2"></i>지도에서 찾기
+                    <button onclick="loadMap()" class="bg-purple-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md font-medium hover:bg-purple-400 transition text-xs sm:text-sm btn-text">
+                        <i class="fas fa-map-marked-alt mr-1 text-xs"></i>지도
                     </button>
                 </div>
             </div>
         </section>
 
         <!-- 카테고리 -->
-        <section class="py-12 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div id="categories" class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <section class="py-2 sm:py-4 bg-white">
+            <div class="max-w-7xl mx-auto px-2 sm:px-4">
+                <div id="categories" class="grid grid-cols-3 sm:grid-cols-5 gap-1.5 sm:gap-2">
                     <!-- 카테고리 동적 로딩 -->
                 </div>
             </div>
         </section>
 
         <!-- 캠핑지 목록 -->
-        <section id="campsites" class="py-16 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-900">인기 캠핑지</h2>
-                    <div class="flex space-x-2">
-                        <select id="regionFilter" onchange="filterCampsites()" class="border border-gray-300 rounded-lg px-4 py-2">
+        <section id="campsites" class="py-3 sm:py-6 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-2 sm:px-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 sm:mb-4 gap-1.5">
+                    <h2 class="text-sm sm:text-base md:text-lg font-bold text-gray-900">인기 캠핑지</h2>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <select id="regionFilter" onchange="filterCampsites()" class="border border-gray-300 rounded-md px-2 py-1.5 text-sm flex-1 sm:flex-none">
                             <option value="">전체 지역</option>
                             <option value="강원">강원</option>
                             <option value="경북">경북</option>
@@ -484,8 +505,8 @@ app.get('/', (c) => {
                             <option value="제주">제주</option>
                             <option value="충남">충남</option>
                         </select>
-                        <select id="difficultyFilter" onchange="filterCampsites()" class="border border-gray-300 rounded-lg px-4 py-2">
-                            <option value="">모든 난이도</option>
+                        <select id="difficultyFilter" onchange="filterCampsites()" class="border border-gray-300 rounded-md px-2 py-1.5 text-sm flex-1 sm:flex-none">
+                            <option value="">난이도</option>
                             <option value="easy">쉬움</option>
                             <option value="medium">보통</option>
                             <option value="hard">어려움</option>
@@ -493,21 +514,21 @@ app.get('/', (c) => {
                         </select>
                     </div>
                 </div>
-                <div id="campsitesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div id="campsitesList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                     <!-- 캠핑지 동적 로딩 -->
                 </div>
             </div>
         </section>
 
         <!-- 지도 섹션 -->
-        <section id="map" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-8">지도에서 캠핑지 찾기</h2>
-                <div id="mapContainer" class="h-[600px] bg-gray-200 rounded-lg flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-map-marked-alt text-6xl text-gray-400 mb-4"></i>
-                        <p class="text-gray-600 text-lg">지도를 불러오는 중...</p>
-                        <button onclick="loadMap()" class="mt-4 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+        <section id="map" class="py-3 sm:py-6 bg-white">
+            <div class="max-w-7xl mx-auto px-2 sm:px-4">
+                <h2 class="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-4">지도에서 캠핑지 찾기</h2>
+                <div id="mapContainer" class="h-[300px] sm:h-[400px] bg-gray-200 rounded-lg flex items-center justify-center">
+                    <div class="text-center px-4">
+                        <i class="fas fa-map-marked-alt text-4xl sm:text-5xl text-gray-400 mb-3"></i>
+                        <p class="text-gray-600 text-sm sm:text-base mb-3">지도를 불러오는 중...</p>
+                        <button onclick="loadMap()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm">
                             지도 로드하기
                         </button>
                     </div>
@@ -516,67 +537,67 @@ app.get('/', (c) => {
         </section>
 
         <!-- 서비스 소개 -->
-        <section id="about" class="py-16 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">왜 WildCamp인가?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-sm text-center">
-                        <i class="fas fa-island-tropical text-4xl text-purple-600 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3">오지·무인도 전문</h3>
-                        <p class="text-gray-600">상업 캠핑장이 아닌, 진짜 자연 그대로의 프라이빗 공간</p>
+        <section id="about" class="py-3 sm:py-6 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-2 sm:px-4">
+                <h2 class="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-4 text-center">왜 WildCamp인가?</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+                    <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-island-tropical text-lg sm:text-2xl text-purple-600 mb-1.5 sm:mb-2"></i>
+                        <h3 class="text-xs sm:text-sm font-bold mb-1 sm:mb-1.5">오지·무인도 전문</h3>
+                        <p class="text-xs text-gray-600 leading-tight">진짜 자연 그대로의 프라이빗 공간</p>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-sm text-center">
-                        <i class="fas fa-shield-alt text-4xl text-purple-600 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3">안전 보장 시스템</h3>
-                        <p class="text-gray-600">SOS 알림, 위치 공유, 보험 자동 가입으로 안전한 캠핑</p>
+                    <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-shield-alt text-lg sm:text-2xl text-purple-600 mb-1.5 sm:mb-2"></i>
+                        <h3 class="text-xs sm:text-sm font-bold mb-1 sm:mb-1.5">안전 보장 시스템</h3>
+                        <p class="text-xs text-gray-600 leading-tight">SOS 알림, 위치 공유, 보험 자동 가입</p>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-sm text-center">
-                        <i class="fas fa-handshake text-4xl text-purple-600 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-3">호스트 직접 연결</h3>
-                        <p class="text-gray-600">토지·도서 소유주와 직접 연결되어 합리적인 가격</p>
+                    <div class="bg-white p-3 sm:p-4 rounded-lg shadow-sm text-center">
+                        <i class="fas fa-handshake text-lg sm:text-2xl text-purple-600 mb-1.5 sm:mb-2"></i>
+                        <h3 class="text-xs sm:text-sm font-bold mb-1 sm:mb-1.5">호스트 직접 연결</h3>
+                        <p class="text-xs text-gray-600 leading-tight">토지·도서 소유주와 직접 연결</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 푸터 -->
-        <footer class="bg-gray-900 text-white py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div>
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-campground text-2xl mr-2"></i>
-                            <span class="text-xl font-bold">WildCamp</span>
+        <footer class="bg-gray-900 text-white py-4 sm:py-6">
+            <div class="max-w-7xl mx-auto px-2 sm:px-4">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    <div class="col-span-2 sm:col-span-1">
+                        <div class="flex items-center mb-1.5 sm:mb-2">
+                            <i class="fas fa-campground text-sm sm:text-base mr-1"></i>
+                            <span class="text-sm sm:text-base font-bold">WildCamp</span>
                         </div>
-                        <p class="text-gray-400">전국 오지·캠핑·무인도 전문<br/>O2O 중개 플랫폼</p>
+                        <p class="text-gray-400 text-xs leading-tight">전국 오지·캠핑·무인도 전문 O2O 중개 플랫폼</p>
                     </div>
                     <div>
-                        <h4 class="font-bold mb-4">서비스</h4>
-                        <ul class="space-y-2 text-gray-400">
+                        <h4 class="font-bold mb-1.5 sm:mb-2 text-xs sm:text-sm">서비스</h4>
+                        <ul class="space-y-0.5 sm:space-y-1 text-gray-400 text-xs">
                             <li><a href="#" class="hover:text-white">캠핑지 찾기</a></li>
                             <li><a href="#" class="hover:text-white">호스트 등록</a></li>
                             <li><a href="#" class="hover:text-white">예약 관리</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-bold mb-4">고객지원</h4>
-                        <ul class="space-y-2 text-gray-400">
+                        <h4 class="font-bold mb-1.5 sm:mb-2 text-xs sm:text-sm">고객지원</h4>
+                        <ul class="space-y-0.5 sm:space-y-1 text-gray-400 text-xs">
                             <li><a href="#" class="hover:text-white">FAQ</a></li>
                             <li><a href="#" class="hover:text-white">이용약관</a></li>
-                            <li><a href="#" class="hover:text-white">개인정보처리방침</a></li>
+                            <li><a href="#" class="hover:text-white">개인정보</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-bold mb-4">문의</h4>
-                        <ul class="space-y-2 text-gray-400">
-                            <li><i class="fas fa-envelope mr-2"></i>info@wildcamp.kr</li>
-                            <li><i class="fas fa-phone mr-2"></i>1588-1234</li>
-                            <li><i class="fas fa-map-marker-alt mr-2"></i>서울시 강남구</li>
+                        <h4 class="font-bold mb-1.5 sm:mb-2 text-xs sm:text-sm">문의</h4>
+                        <ul class="space-y-0.5 sm:space-y-1 text-gray-400 text-xs">
+                            <li><i class="fas fa-envelope mr-1 text-xs"></i>info@wildcamp.kr</li>
+                            <li><i class="fas fa-phone mr-1 text-xs"></i>1588-1234</li>
+                            <li><i class="fas fa-map-marker-alt mr-1 text-xs"></i>서울 강남</li>
                         </ul>
                     </div>
                 </div>
-                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                    <p>&copy; 2025 WildCamp. All rights reserved.</p>
+                <div class="border-t border-gray-800 mt-3 sm:mt-4 pt-3 sm:pt-4 text-center text-gray-400">
+                    <p class="text-xs">&copy; 2025 WildCamp. All rights reserved.</p>
                 </div>
             </div>
         </footer>

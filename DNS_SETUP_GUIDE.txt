@@ -1,0 +1,109 @@
+╔════════════════════════════════════════════════════════════════╗
+║       www.feezone.store DNS 설정 가이드                        ║
+╚════════════════════════════════════════════════════════════════╝
+
+📋 단계별 설정 방법
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣ Cloudflare Dashboard에서 DNS 레코드 추가
+   ┌─────────────────────────────────────────────────────────┐
+   │ 1. "Add record" 버튼 클릭                                │
+   │ 2. 다음 정보 입력:                                       │
+   │                                                          │
+   │    Type: CNAME                                          │
+   │    Name: www                                            │
+   │    Target: webapp.pages.dev                             │
+   │    Proxy status: Proxied (주황색 🟠)                    │
+   │    TTL: Auto                                            │
+   │                                                          │
+   │ 3. "Save" 클릭                                           │
+   └─────────────────────────────────────────────────────────┘
+
+2️⃣ 루트 도메인 설정 (선택사항)
+   ┌─────────────────────────────────────────────────────────┐
+   │ "Add record" 다시 클릭 후:                               │
+   │                                                          │
+   │    Type: CNAME                                          │
+   │    Name: @ (또는 비워두기)                              │
+   │    Target: webapp.pages.dev                             │
+   │    Proxy status: Proxied (주황색 🟠)                    │
+   │    TTL: Auto                                            │
+   └─────────────────────────────────────────────────────────┘
+
+3️⃣ Cloudflare Pages에서 커스텀 도메인 추가
+   ┌─────────────────────────────────────────────────────────┐
+   │ 1. Cloudflare Dashboard 로그인                           │
+   │ 2. "Workers & Pages" 메뉴 선택                          │
+   │ 3. "webapp" 프로젝트 클릭                                │
+   │ 4. "Custom domains" 탭 선택                             │
+   │ 5. "Set up a custom domain" 클릭                        │
+   │ 6. "www.feezone.store" 입력                             │
+   │ 7. "Continue" → "Activate domain"                       │
+   └─────────────────────────────────────────────────────────┘
+
+🔍 DNS 전파 확인
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+터미널에서 실행:
+  $ nslookup www.feezone.store
+  또는
+  $ dig www.feezone.store
+
+예상 결과:
+  www.feezone.store → CNAME → webapp.pages.dev
+
+⏱️ DNS 전파 시간: 5분 ~ 24시간 (일반적으로 10-30분)
+
+🌐 접속 확인
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+설정 완료 후 브라우저에서:
+  ✅ https://www.feezone.store
+  ✅ https://feezone.store (루트 도메인 설정 시)
+
+🔒 SSL/TLS 설정 (필수)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Cloudflare Dashboard → "SSL/TLS" 메뉴
+2. 암호화 모드: "Full (strict)" 선택
+3. "Edge Certificates" → "Always Use HTTPS" 활성화
+
+⚡ Proxy Status 설정
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🟠 Proxied (권장):
+  ✓ Cloudflare CDN 활용
+  ✓ DDoS 보호
+  ✓ 자동 SSL 인증서
+  ✓ 캐싱 최적화
+  ✓ 빠른 속도
+
+⚪ DNS Only:
+  ✗ CDN 미사용
+  ✗ 보호 기능 없음
+  ✓ 직접 연결
+
+💡 권장 사항: 항상 "Proxied" 사용
+
+🚨 일반적인 문제 해결
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ "DNS_PROBE_FINISHED_NXDOMAIN" 오류
+   → DNS 전파 대기 (최대 24시간)
+   → DNS 레코드 다시 확인
+
+❌ "ERR_TOO_MANY_REDIRECTS" 오류
+   → SSL/TLS 모드를 "Full (strict)"로 변경
+   → "Always Use HTTPS" 확인
+
+❌ "525 SSL Handshake Failed" 오류
+   → Cloudflare Pages 배포 확인
+   → Origin 서버 SSL 인증서 확인
+
+📞 도움이 필요하신가요?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cloudflare 지원 문서:
+  → https://developers.cloudflare.com/pages/
+  → https://developers.cloudflare.com/dns/
+
